@@ -108,7 +108,7 @@ ac,google)/url?q=http://steli.kr.ua 20230606063532	cdx-00000.gz	25376080	242582	
 ```
 The `cluster.idx` of a single crawl (there are about 5 crawls per year) is about 200MB, that why the search is slow - it happens on AWS, not inside the script. 
 
-The cluster.idx will lead you to the actually indices of that crawl, called `cdx-....gz`, which contain something like this:
+The cluster.idx will lead you to the indices of that crawl, called `cdx-....gz`, which contain something like this:
 
 ```
 {"urlkey": "com,tesla)/", "timestamp": "20230922134848", "url": "https://www.tesla.com/", "mime": "unk", "mime-detected": "application/octet-stream", "status": "301", "digest": "3I42H3S6NNFQ2MSVX7XZKYAYSCX5QBYJ", "length": "555", "offset": "29785920", "filename": "crawl-data/CC-MAIN-2023-40/segments/1695233506420.84/crawldiagnostics/CC-MAIN-20230922134342-20230922164342-00253.warc.gz", "redirect": "https://www.tesla.com/en/"}
