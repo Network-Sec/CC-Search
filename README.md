@@ -50,16 +50,16 @@ As explained before, Common Crawl does strict ratelimiting. To get around that, 
 
 Use either the `--year` switch to search `all` crawls of that year. Or instead use the `--only` switch to search `only one crawl per year`, starting in 2015 (before there isn't much content). 
 
-You can search for `anything`, not strictly `urls`. 
+You can search for `anything`, not strictly `domains`. But: The server side part of Common Crawls search API is a black box, and it seems to try and `deconstruct` the submitted URL into `TLD` and `domain` parts. 
 
 ## Usage
 ```bash
-usage: cc_search.py [-h] [--year YEAR [YEAR ...]] [--only] url
+usage: cc_search.py domain [-h] [--year YEAR [YEAR ...]] [--only] 
 
-Search for a URL in Common Crawl indices.
+Search for a domain in Common Crawl indices.
 
 positional arguments:
-  url                   URL to search for in Common Crawl indices.
+  domain                 domain to search for in Common Crawl indices.
 
 options:
   -h, --help            show this help message and exit
