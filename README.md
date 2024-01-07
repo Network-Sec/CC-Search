@@ -4,7 +4,7 @@ Simple Common Crawl Web Archive search tool - intended to keep it simple and fle
 `If you want to search for passwords etc. you need to download the WARC files called cdx-00000.gz` - this tool is `not` made for that, it's for finding historic info on specific domains / IP addresses. There is no tool that can search in any other way online, Common Crawl provides only this way of searching (which I think is the root of the whole problem, that why people download all the WARC files completely). 
 
 ## What this does - and does not
-The key to understand the tool are the `indices` of Common Crawl. They are like a library index and provide only a very limited overview of the available data. It's safest to search for `URLs`, cause that's the intended `usecase`. You can of course search for other things. 
+The key to understand the tool are the `indices` of Common Crawl. They are like a library index and provide only a very limited overview of the available data. It's safest to search for `domains`, cause that's the intended `usecase`. You can of course search for other things but may stumble over the stubborn server side API that will try to interpret your request as domain.  
 
 ### cluster.idx
 Example content of one index. On the left are `ip addresses` (in the top half) and `domain names` (in the bottom half).   
