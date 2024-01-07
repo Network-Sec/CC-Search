@@ -6,6 +6,9 @@ The key to understand the tool are the `indices` of Common Crawl. They are like 
 
 ### cluster.idx
 Example content of one index. On the left are `ip addresses` in the beginning and `domain names` on the bottom half. The domain names are `reversed`, beginning with the `TLD`. 
+
+After that is the URL followed by the offsets - these are the addresses where the actual data is found. 
+
 ```
 83,228,179,1)/wordpress/index.php/2023/05/22/22052566 20230601095112	cdx-00000.gz	18332338	207996	95
 87,109,106,89)/eshop/robots.txt 20230601225058	cdx-00000.gz	18540334	188971	96
@@ -19,8 +22,11 @@ abbott,ensure)/co/blog/reto-ensure-alimentandose-fuera-de-casa.html 202306040741
 abbott,freestyle)/in-en/why-is-glucose-monitoring-important.html 20230529011758	cdx-00000.gz	20068802	198552	104
 abbott,jobs)/global/es/job/31057790/therapy-business-manager-neurolife-pune 20230605230938	cdx-00000.gz	20267354	195819	105
 ```
+The `cluster.idx` of a single crawl (there are about 5 crawls per year) is about 200MB, that why the search is slow - it happens on AWS, not inside the script. 
 
-## Info
+One crawl, the `WARC` files, is about `200GB` in size, some are smaller, some are larger. 
+
+## Rate Limit
 Common Crawl is chronically overloaded, mainly due to AI / LLM development (so I've heard). That why switches like `--year` and `--only` were created, to limit the search on specific indexes. The script also `caches` the `index` files, be sure to keep it that way, or you'll be blocked fast. 
 
 Other scripts don't respect the harsh limits of `common crawl` and thus are slow, resp. don't deliver at all. 
@@ -29,7 +35,7 @@ The script isn't 100% finished, there's one `if` request you might need to play 
 
 Upon findings, the script does the `calculations` to only download the specific chunk of the `WARC` files. 
 
-## Rate Limit
+## Usage in regards to Rate Limit
 As explained before, Common Crawl does strict ratelimiting. To get around that, the script caches indices and provides two switches. 
 
 Use either the `--year` switch to search `all` crawls of that year. Or instead use the `--only` switch to search `only one crawl per year`, starting in 2015 (before there isn't much content). 
