@@ -6,6 +6,84 @@ Simple Common Crawl Web Archive search tool - intended to keep it simple and fle
 ## What this does - and does not
 The key to understand the tool are the `indices` of Common Crawl. They are like a library index and provide only a very limited overview of the available data - they are actually the indices of the indices. It's safest to search for `domains`, cause that's the intended `usecase`. You can of course search for other things but may stumble over the stubborn server side API that will try to interpret your request as domain.  
 
+## I don't care about... How do I use this correctly?
+TL;DR: Use this for a quick `OSINT` gig. Enter a correct domain (IP may or may not work). Don't fool around with it, only search for what you need and then lean back, be `ZEN`. I can't pronounce this enough, `ZEN` is the way of the search!
+
+Correct usage example, this takes some time and a fresh source IP (your IP). 
+```bash
+$ cc_domain_search.py "tesla.com" --year 2023
+https://index.commoncrawl.org/CC-MAIN-2023-50-index?url=tesla.com&output=json
+504  <== Rate limit block, search again later may or may not work
+https://index.commoncrawl.org/CC-MAIN-2023-40-index?url=tesla.com&output=json
+504
+https://index.commoncrawl.org/CC-MAIN-2023-23-index?url=tesla.com&output=json
+504
+https://index.commoncrawl.org/CC-MAIN-2023-14-index?url=tesla.com&output=json
+200
+https://index.commoncrawl.org/CC-MAIN-2023-06-index?url=tesla.com&output=json
+200
+curl -H 'Range: bytes=1172358122-1172490778' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-14/segments/1679296943695.23/warc/CC-MAIN-20230321095704-20230321125704-00547.warc.gz' --output test.gz
+WARC-IP-Address: 23.219.222.217
+WARC-Target-URI: https://www.tesla.com
+curl -H 'Range: bytes=1144620389-1144753039' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-14/segments/1679296943695.23/warc/CC-MAIN-20230321095704-20230321125704-00044.warc.gz' --output test.gz
+WARC-IP-Address: 23.218.146.104
+WARC-Target-URI: https://www.tesla.com/
+curl -H 'Range: bytes=1081146885-1081279532' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-14/segments/1679296945182.12/warc/CC-MAIN-20230323163125-20230323193125-00547.warc.gz' --output test.gz
+WARC-IP-Address: 23.210.240.78
+WARC-Target-URI: https://www.tesla.com
+curl -H 'Range: bytes=1124290578-1124423240' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-14/segments/1679296945183.40/warc/CC-MAIN-20230323194025-20230323224025-00044.warc.gz' --output test.gz
+WARC-IP-Address: 23.220.132.93
+WARC-Target-URI: https://www.tesla.com/
+curl -H 'Range: bytes=2748060-2748584' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-14/segments/1679296945288.47/crawldiagnostics/CC-MAIN-20230324180032-20230324210032-00674.warc.gz' --output test.gz
+WARC-IP-Address: 23.223.252.49
+WARC-Target-URI: http://www.tesla.com
+curl -H 'Range: bytes=1138387183-1138519838' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-14/segments/1679296945288.47/warc/CC-MAIN-20230324180032-20230324210032-00044.warc.gz' --output test.gz
+WARC-IP-Address: 23.223.252.49
+WARC-Target-URI: https://www.tesla.com/
+curl -H 'Range: bytes=1138093925-1138226583' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-14/segments/1679296945440.67/warc/CC-MAIN-20230326075911-20230326105911-00044.warc.gz' --output test.gz
+WARC-IP-Address: 23.220.132.93
+WARC-Target-URI: https://www.tesla.com/
+curl -H 'Range: bytes=520955-521478' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764495001.99/robotstxt/CC-MAIN-20230127164242-20230127194242-00114.warc.gz' --output test.gz
+WARC-IP-Address: 184.24.156.156
+WARC-Target-URI: http://www.tesla.com
+curl -H 'Range: bytes=979449549-979581158' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764495001.99/warc/CC-MAIN-20230127164242-20230127194242-00844.warc.gz' --output test.gz
+WARC-IP-Address: 184.24.156.156
+WARC-Target-URI: https://www.tesla.com/
+curl -H 'Range: bytes=994732413-994864028' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764499524.28/warc/CC-MAIN-20230128054815-20230128084815-00844.warc.gz' --output test.gz
+WARC-IP-Address: 23.210.0.72
+WARC-Target-URI: https://www.tesla.com/
+curl -H 'Range: bytes=1012362809-1012494475' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764500017.27/warc/CC-MAIN-20230202101933-20230202131933-00467.warc.gz' --output test.gz
+WARC-IP-Address: 23.220.132.93
+WARC-Target-URI: https://www.tesla.com
+curl -H 'Range: bytes=639387825-639519492' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764500017.27/warc/CC-MAIN-20230202101933-20230202131933-00467.warc.gz' --output test.gz
+WARC-IP-Address: 23.220.132.93
+WARC-Target-URI: https://www.Tesla.com
+curl -H 'Range: bytes=1034790208-1034921864' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764500017.27/warc/CC-MAIN-20230202101933-20230202131933-00844.warc.gz' --output test.gz
+WARC-IP-Address: 23.220.132.93
+WARC-Target-URI: https://www.tesla.com/
+curl -H 'Range: bytes=1033100069-1033231787' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764500044.16/warc/CC-MAIN-20230203055519-20230203085519-00844.warc.gz' --output test.gz
+WARC-IP-Address: 184.50.204.49
+WARC-Target-URI: https://www.tesla.com/
+curl -H 'Range: bytes=1024505070-1024636768' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764500151.93/warc/CC-MAIN-20230204173912-20230204203912-00844.warc.gz' --output test.gz
+WARC-IP-Address: 23.197.108.191
+WARC-Target-URI: https://www.tesla.com/
+curl -H 'Range: bytes=1041321975-1041453628' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764500250.51/warc/CC-MAIN-20230205063441-20230205093441-00844.warc.gz' --output test.gz
+WARC-IP-Address: 23.223.252.49
+WARC-Target-URI: https://www.tesla.com/
+curl -H 'Range: bytes=1027684446-1027816136' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764501066.53/warc/CC-MAIN-20230209014102-20230209044102-00844.warc.gz' --output test.gz
+WARC-IP-Address: 23.208.32.145
+WARC-Target-URI: https://www.tesla.com/
+curl -H 'Range: bytes=17739624-17740176' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764501407.6/crawldiagnostics/CC-MAIN-20230209045525-20230209075525-00538.warc.gz' --output test.gz
+WARC-IP-Address: 23.9.66.10
+WARC-Target-URI: https://tesla.com
+curl -H 'Range: bytes=1019506179-1019637821' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764501407.6/warc/CC-MAIN-20230209045525-20230209075525-00844.warc.gz' --output test.gz
+WARC-IP-Address: 23.210.0.72
+WARC-Target-URI: https://www.tesla.com/
+curl -H 'Range: bytes=1021059586-1021191283' 'https://data.commoncrawl.org/crawl-data/CC-MAIN-2023-06/segments/1674764501555.34/warc/CC-MAIN-20230209081052-20230209111052-00844.warc.gz' --output test.gz
+WARC-IP-Address: 23.220.132.93
+WARC-Target-URI: https://www.tesla.com/
+```
+
 ### cluster.idx
 Example content of one index. On the left are `ip addresses` (in the top half) and `domain names` (in the bottom half).   
 The domain names are `reversed`, beginning with the `TLD`. 
