@@ -81,8 +81,8 @@ def search_in_index(index, url):
     return response_text, response.status_code
 
 def main():
-    parser = argparse.ArgumentParser(description="Search for a URL in Common Crawl indices.")
-    parser.add_argument("url", help="URL to search for in Common Crawl indices.")
+    parser = argparse.ArgumentParser(description="Search for a Domain in Common Crawl indices.")
+    parser.add_argument("url", help="Domain to search for in Common Crawl indices.")
     parser.add_argument("--year", nargs="+", type=int, help="Specify the year(s) to search (e.g., --year 2023 2022).")
     parser.add_argument("--only", action="store_true", help="Search only one index per year, starting in 2015.")
 
