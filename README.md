@@ -4,6 +4,22 @@ Simple Common Crawl Web Archive search tool - intended to keep it simple and fle
 ## What this does - and does not
 The key to understand the tool are the `indices` of Common Crawl. They are like a library index and provide only a very limited overview of the available data. It's safest to search for `URLs`, cause that's the intended `usecase`. You can of course search for other things. 
 
+### cluster.idx
+Example content of one index. On the left are `ip addresses` in the beginning and `domain names` on the bottom half. The domain names are `reversed`, beginning with the `TLD`. 
+```
+83,228,179,1)/wordpress/index.php/2023/05/22/22052566 20230601095112	cdx-00000.gz	18332338	207996	95
+87,109,106,89)/eshop/robots.txt 20230601225058	cdx-00000.gz	18540334	188971	96
+9,239,29,202)/web?page_id=1918 20230608223518	cdx-00000.gz	18729305	177239	97
+91,154,241,192:8080)/apex/f?p=100:14:14786262439325::::: 20230604184114	cdx-00000.gz	18906544	185989	98
+93,141,29,66)/.jp/.idcash88 20230601233028	cdx-00000.gz	19092533	198708	99
+97,100,122,20)/tips-for-being-successful-in-the-workplace-during-quarantine 20230607055901	cdx-00000.gz	19291241	204305	100
+abb,careers)/estonia/et/job/85467670/is-functional-analyst 20230602213339	cdx-00000.gz	19495546	211729	101
+abbott,cardiovascular)/int/en/hcp/education-training/ep-emea-education/workshops.html 20230530042826	cdx-00000.gz	19707275	190777	102
+abbott,ensure)/co/blog/reto-ensure-alimentandose-fuera-de-casa.html 20230604074124	cdx-00000.gz	19898052	170750	103
+abbott,freestyle)/in-en/why-is-glucose-monitoring-important.html 20230529011758	cdx-00000.gz	20068802	198552	104
+abbott,jobs)/global/es/job/31057790/therapy-business-manager-neurolife-pune 20230605230938	cdx-00000.gz	20267354	195819	105
+```
+
 ## Info
 Common Crawl is chronically overloaded, mainly due to AI / LLM development (so I've heard). That why switches like `--year` and `--only` were created, to limit the search on specific indexes. The script also `caches` the `index` files, be sure to keep it that way, or you'll be blocked fast. 
 
