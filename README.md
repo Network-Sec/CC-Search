@@ -8,6 +8,8 @@ Other scripts don't respect the harsh limits of `common crawl` and thus are slow
 
 The script isn't 100% finished, there's one `if` request you might need to play with, according to your needs, that limits the range. It's pretty simple and easy to understand, just look into the code. 
 
+Upon findings, the script does the `calculations` to only download the specific chunk of the `WARC` files. 
+
 ## Usage
 ```bash
 usage: cc_domain_search.py [-h] [--year YEAR [YEAR ...]] [--only] url
