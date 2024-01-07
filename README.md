@@ -21,6 +21,8 @@ abbott,cardiovascular)/int/en/hcp/education-training/ep-emea-education/workshops
 abbott,ensure)/co/blog/reto-ensure-alimentandose-fuera-de-casa.html 20230604074124	cdx-00000.gz	19898052	170750	103
 abbott,freestyle)/in-en/why-is-glucose-monitoring-important.html 20230529011758	cdx-00000.gz	20068802	198552	104
 abbott,jobs)/global/es/job/31057790/therapy-business-manager-neurolife-pune 20230605230938	cdx-00000.gz	20267354	195819	105
+ac,google)/url?q=http://motoruf.de 20230604002900	cdx-00000.gz	25175465	200615	130
+ac,google)/url?q=http://steli.kr.ua 20230606063532	cdx-00000.gz	25376080	242582	131
 ```
 The `cluster.idx` of a single crawl (there are about 5 crawls per year) is about 200MB, that why the search is slow - it happens on AWS, not inside the script. 
 
