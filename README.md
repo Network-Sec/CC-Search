@@ -93,7 +93,7 @@ In this example the script only searches for Domain <=> IP mapping (historic DNS
 Example content of one index. On the left are `ip addresses` (in the top half) and `domain names` (in the bottom half).   
 The domain names are `reversed`, beginning with the `TLD`. 
 
-Followed by that is the rest of the URL, then the specific index file name, followed by the offsets - these are the addresses where the actual data is found. 
+Followed by that is the rest of the URL, then the specific index file name, followed by some statistical data.
 
 ```
 83,228,179,1)/wordpress/index.php/2023/05/22/22052566 20230601095112	cdx-00000.gz	18332338	207996	95
@@ -110,16 +110,16 @@ abbott,jobs)/global/es/job/31057790/therapy-business-manager-neurolife-pune 2023
 ac,google)/url?q=http://motoruf.de 20230604002900	cdx-00000.gz	25175465	200615	130
 ac,google)/url?q=http://steli.kr.ua 20230606063532	cdx-00000.gz	25376080	242582	131
 ```
-The `cluster.idx` of a single crawl (there are about 5 crawls per year) is about 200MB, that why the search is slow - it happens on AWS, not inside the script. 
+The `cluster.idx` of a single crawl (there are about 5 crawls per year) is about 200MB, that why the search is rather slow - it happens on AWS, not inside the script.
 
 The cluster.idx will lead you to the indices of that crawl, called `cdx-....gz`, which contain something like this:
 
 ```
 {"urlkey": "com,tesla)/", "timestamp": "20230922134848", "url": "https://www.tesla.com/", "mime": "unk", "mime-detected": "application/octet-stream", "status": "301", "digest": "3I42H3S6NNFQ2MSVX7XZKYAYSCX5QBYJ", "length": "555", "offset": "29785920", "filename": "crawl-data/CC-MAIN-2023-40/segments/1695233506420.84/crawldiagnostics/CC-MAIN-20230922134342-20230922164342-00253.warc.gz", "redirect": "https://www.tesla.com/en/"}
 ```
-These will finally lead you to the `WARC` files, the actual `data`, called `CC-MAIN-.....warc.gz`. 
+These contain the file names and offsets and will finally lead you to the `WARC` files, the actual `data`, called `CC-MAIN-.....warc.gz`. 
 
-One crawl, the `WARC` files, is about `200GB` in size, some are smaller, some are larger. That's the reason we can't search directly inside the WARC files. 
+One crawl, the `WARC` files, is about `200GB` in size, some are smaller, some are larger (up to a TB). That's the reason we can't search directly inside the WARC files online, but only can do the limited domain search. It's still pretty handy and a source not many people have access to. 
 
 ## Rate Limit
 Common Crawl is chronically overloaded, mainly due to AI / LLM development (so I've heard). That why switches like `--year` and `--only` were created, to limit the search on specific indexes. The script also `caches` the `index` name files, be sure to keep it that way, or you'll be blocked fast. (I played with caching the real index files but.. it doesn't make much sense, they're too big. You can download the WARC right away instead of going this intermediate step, at least that's been my way.)
