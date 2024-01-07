@@ -63,3 +63,5 @@ options:
   --only                Search only one index per year, starting in 2015.
 ```
 
+## Help I still can't find anything
+Congrats, you've likely been blocked, cause you thought the wrong thought or forgot to breath through the nose. It's really like that, Common Crawl will block you, even though you don't do anything. I worked with it for a long time. It's not your fault. 
