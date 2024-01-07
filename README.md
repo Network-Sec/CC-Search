@@ -5,9 +5,12 @@ Simple Common Crawl Web Archive search tool - intended to keep it simple and fle
 The key to understand the tool are the `indices` of Common Crawl. They are like a library index and provide only a very limited overview of the available data. It's safest to search for `URLs`, cause that's the intended `usecase`. You can of course search for other things. 
 
 ### cluster.idx
-Example content of one index. On the left are `ip addresses` in the beginning and `domain names` on the bottom half. The domain names are `reversed`, beginning with the `TLD`. 
+Example content of one index. On the left are `ip addresses` (in the top half) and `domain names` (in the bottom half).   
+The domain names are `reversed`, beginning with the `TLD`. 
 
-After that is the URL followed by the offsets - these are the addresses where the actual data is found. 
+Followed by that is the rest of the URL, then the WARC file name, followed by the offsets - these are the addresses where the actual data is found. 
+
+`If you want to search for passwords etc. you need to download the WARC files called cdx-00000.gz` - this tool is `not` made for that, it's for finding historic info on specific domains / IP addresses. There is no tool that can search in any other way online, Common Crawl provides only this way of searching (which I think is the root of the whole problem, that why people download all the WARC files completely). 
 
 ```
 83,228,179,1)/wordpress/index.php/2023/05/22/22052566 20230601095112	cdx-00000.gz	18332338	207996	95
