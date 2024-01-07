@@ -118,7 +118,7 @@ These will finally lead you to the `WARC` files, the actual `data`, called `CC-M
 One crawl, the `WARC` files, is about `200GB` in size, some are smaller, some are larger. That's the reason we can't search directly inside the WARC files. 
 
 ## Rate Limit
-Common Crawl is chronically overloaded, mainly due to AI / LLM development (so I've heard). That why switches like `--year` and `--only` were created, to limit the search on specific indexes. The script also `caches` the `index` files, be sure to keep it that way, or you'll be blocked fast. 
+Common Crawl is chronically overloaded, mainly due to AI / LLM development (so I've heard). That why switches like `--year` and `--only` were created, to limit the search on specific indexes. The script also `caches` the `index` name files, be sure to keep it that way, or you'll be blocked fast. (I played with caching the real index files but.. it doesn't make much sense, they're too big. You can download the WARC right away instead of going this intermediate step, at least that's been my way.)
 
 Other scripts don't respect the harsh limits of `common crawl` and thus are slow, resp. don't deliver at all. 
 
