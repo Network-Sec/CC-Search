@@ -1,6 +1,6 @@
-# My WARC File download script - you'll need 120TB... 
-# and a file called "Indices_2_per_year.txt"
-# That contains something like:
+# My WARC File download script - you'll need 120TB (for entire CC) or less
+# if you limit it to certain indices using the file called 
+# "Indices_2_per_year.txt", that contains something like:
 # CC-MAIN-2023-50
 # CC-MAIN-2023-23
 # ...
