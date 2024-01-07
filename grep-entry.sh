@@ -12,10 +12,7 @@ for filename in ./*.warc.gz; do
     prep_ent=$(echo -n "$entries" | awk 'BEGIN {RS="--\n"} {print $0"‡"}') 
     mapfile -d '‡' parts <<< "$prep_ent"
     
-    for entry in "${parts[@]}"; do 
-        #echo "Processing:"
-	      #echo "$entry" 
-        
+    for entry in "${parts[@]}"; do         
         IP=$(echo "$entry" | grep -is "WARC-IP.*" | grep -Pose "\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}")
         FULL_URL=$(echo "$entry" | grep -is "WARC-.*URI.*" | grep -Pose "(?<=: ).*")
         DOMAIN=$(echo "$entry" | grep -is "WARC-.*URI.*" | grep -Pose "(?<=://)[^/]*")
