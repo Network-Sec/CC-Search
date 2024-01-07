@@ -24,7 +24,7 @@ abbott,jobs)/global/es/job/31057790/therapy-business-manager-neurolife-pune 2023
 ```
 The `cluster.idx` of a single crawl (there are about 5 crawls per year) is about 200MB, that why the search is slow - it happens on AWS, not inside the script. 
 
-One crawl, the `WARC` files, is about `200GB` in size, some are smaller, some are larger. 
+One crawl, the `WARC` files, is about `200GB` in size, some are smaller, some are larger. That's the reason we can't search directly inside the WARC files. 
 
 ## Rate Limit
 Common Crawl is chronically overloaded, mainly due to AI / LLM development (so I've heard). That why switches like `--year` and `--only` were created, to limit the search on specific indexes. The script also `caches` the `index` files, be sure to keep it that way, or you'll be blocked fast. 
