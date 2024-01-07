@@ -35,6 +35,11 @@ The script isn't 100% finished, there's one `if` request you might need to play 
 
 Upon findings, the script does the `calculations` to only download the specific chunk of the `WARC` files. 
 
+## Understand the WARC files
+The real juicy data is within the WARC files. It's a fancy name, but they are just compressed text. They contain requests and responses, sometimes only parts, sometimes complete `request headers` and `body` HTML - the content of the internet. This is the reason, why all of this is such a pain. I spent 6 months and quite a bit of money on lots of Terrabytes of disk space to download only a part of Common Crawl and search it locally. 
+
+There are tools that promisse efficient search by "understanding the WARC format" - I can't speak to that, I just `grep` through them. The `problem` with the `WARC` files is not the format, it's the amount of data and the slow / rate limited download. The solution is: `patience`. 
+
 ## Usage in regards to Rate Limit
 As explained before, Common Crawl does strict ratelimiting. To get around that, the script caches indices and provides two switches. 
 
