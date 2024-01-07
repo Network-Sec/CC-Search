@@ -10,9 +10,16 @@ The script isn't 100% finished, there's one `if` request you might need to play 
 
 Upon findings, the script does the `calculations` to only download the specific chunk of the `WARC` files. 
 
+## Rate Limit
+As explained before, Common Crawl does strict ratelimiting. To get around that, the script caches indices and provides two switches. 
+
+Use either the `--year` switch to search `all` crawls of that year. Or instead use the `--only` switch to search `only one crawl per year`, starting in 2015 (before there isn't much content). 
+
+You can search for `anything`, not strictly `urls`. 
+
 ## Usage
 ```bash
-usage: cc_domain_search.py [-h] [--year YEAR [YEAR ...]] [--only] url
+usage: cc_search.py [-h] [--year YEAR [YEAR ...]] [--only] url
 
 Search for a URL in Common Crawl indices.
 
