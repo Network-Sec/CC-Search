@@ -83,7 +83,7 @@ curl -H 'Range: bytes=1021059586-1021191283' 'https://data.commoncrawl.org/crawl
 WARC-IP-Address: 23.220.132.93
 WARC-Target-URI: https://www.tesla.com/
 ```
-In this example the script only searches for Domain <=> IP mapping (history DNS) - but you can easily adjust the code and extract other data. I recommend doing this. 
+In this example the script only searches for Domain <=> IP mapping (historic DNS) - but you can easily adjust the code and extract other data. I recommend doing this. 
 
 ### cluster.idx
 Example content of one index. On the left are `ip addresses` (in the top half) and `domain names` (in the bottom half).   
