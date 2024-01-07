@@ -4,13 +4,13 @@ Simple Common Crawl Web Archive search tool - intended to keep it simple and fle
 `If you want to search for passwords etc. you need to download the WARC files called CC-MAIN-20230922134342-20230922164342-00253.warc.gz` - this tool is `not` made for that, it's for finding historic info on specific domains / IP addresses. There is no tool that can search in any other way online, Common Crawl provides only this way of searching (which I think is the root of the whole problem, that why people download all the WARC files completely). 
 
 ## What this does - and does not
-The key to understand the tool are the `indices` of Common Crawl. They are like a library index and provide only a very limited overview of the available data. It's safest to search for `domains`, cause that's the intended `usecase`. You can of course search for other things but may stumble over the stubborn server side API that will try to interpret your request as domain.  
+The key to understand the tool are the `indices` of Common Crawl. They are like a library index and provide only a very limited overview of the available data - they are actually the indices of the indices. It's safest to search for `domains`, cause that's the intended `usecase`. You can of course search for other things but may stumble over the stubborn server side API that will try to interpret your request as domain.  
 
 ### cluster.idx
 Example content of one index. On the left are `ip addresses` (in the top half) and `domain names` (in the bottom half).   
 The domain names are `reversed`, beginning with the `TLD`. 
 
-Followed by that is the rest of the URL, then the WARC file name, followed by the offsets - these are the addresses where the actual data is found. 
+Followed by that is the rest of the URL, then the specific index file name, followed by the offsets - these are the addresses where the actual data is found. 
 
 ```
 83,228,179,1)/wordpress/index.php/2023/05/22/22052566 20230601095112	cdx-00000.gz	18332338	207996	95
@@ -28,6 +28,13 @@ ac,google)/url?q=http://motoruf.de 20230604002900	cdx-00000.gz	25175465	200615	1
 ac,google)/url?q=http://steli.kr.ua 20230606063532	cdx-00000.gz	25376080	242582	131
 ```
 The `cluster.idx` of a single crawl (there are about 5 crawls per year) is about 200MB, that why the search is slow - it happens on AWS, not inside the script. 
+
+The cluster.idx will lead you to the actually indices of that crawl, called `cdx-....gz`, which contain something like this:
+
+```
+{"urlkey": "com,tesla)/", "timestamp": "20230922134848", "url": "https://www.tesla.com/", "mime": "unk", "mime-detected": "application/octet-stream", "status": "301", "digest": "3I42H3S6NNFQ2MSVX7XZKYAYSCX5QBYJ", "length": "555", "offset": "29785920", "filename": "crawl-data/CC-MAIN-2023-40/segments/1695233506420.84/crawldiagnostics/CC-MAIN-20230922134342-20230922164342-00253.warc.gz", "redirect": "https://www.tesla.com/en/"}
+```
+These will finally lead you to the `WARC` files, the actual `data`, called `CC-MAIN-.....warc.gz`. 
 
 One crawl, the `WARC` files, is about `200GB` in size, some are smaller, some are larger. That's the reason we can't search directly inside the WARC files. 
 
