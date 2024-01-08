@@ -1,11 +1,7 @@
 # CC-Search
-`cc_search.py`  
-
 Simple Common Crawl Web Archive search tool - intended to keep it simple and flexible: Do it in code == do it fast and precise.
 
 `If you want to search for passwords etc. you need to download the WARC files called CC-MAIN-20230922134342-20230922164342-00253.warc.gz` - this tool is `not` made for that, it's for finding historic info on specific domains / IP addresses. There is no tool that can search in any other way online, Common Crawl provides only this way of searching (which I think is the root of the whole problem, that why people download all the WARC files completely). 
-
-I provided two more scripts to serialize download of WARC archives and to grep out data from those. Rest of this documentation is for the live-search python script. 
 
 ## What this does - and does not
 The key to understand the tool are the `indices` of Common Crawl. They are like a library index and provide only a very limited overview of the available data - they are actually the indices of the indices. It's safest to search for `domains`, cause that's the intended `usecase`. You can of course search for other things but may stumble over the stubborn server side API that will try to interpret your request as domain.  
